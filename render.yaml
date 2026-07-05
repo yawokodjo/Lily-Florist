@@ -23,11 +23,11 @@ services:
         value: https://lily-florist.onrender.com
       - key: DEFAULT_FROM_EMAIL
         value: noreply@lilys-florist.com
-    buildCommand: |
+    buildCommand: >-
       pip install -r requirements/base.txt &&
+      python manage.py collectstatic --noinput &&
       python manage.py migrate --noinput &&
-      python manage.py loaddata
-        apps/products/fixtures/initial_products.json
+      python manage.py loaddata apps/products/fixtures/initial_products.json
 
   # ── Frontend React ──────────────────────────
   - type: web
