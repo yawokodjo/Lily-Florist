@@ -9,7 +9,7 @@ const mockProduct = {
   id: "1",
   name: "Red Roses",
   slug: "red-roses",
-  price: "29.99",
+  price: 29.99,
   category: "1",
   category_name: "Roses",
   photo_url: "https://example.com/rose.jpg",
