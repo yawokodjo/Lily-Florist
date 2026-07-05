@@ -14,6 +14,14 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 DEBUG = False
 ALLOWED_HOSTS = [h for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h]
 
+# Render assigns the actual hostname at service-creation time (it appends a
+# random suffix if the requested name is taken), so it can differ from
+# whatever ALLOWED_HOSTS was hardcoded to. Render injects the real hostname
+# in RENDER_EXTERNAL_HOSTNAME — always trust it over the static env var.
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME and RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 # ── Base de données Neon (PostgreSQL serverless) ───────────────────
 DATABASES = {
     "default": dj_database_url.config(
