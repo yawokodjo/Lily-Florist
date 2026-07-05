@@ -1,0 +1,20 @@
+-r base.txt
+
+# ── Tests ─────────────────────────────────────────────────────────
+pytest==8.3.4
+pytest-django==4.9.0
+pytest-cov==6.0.0
+pytest-xdist==3.6.1         # parallélisation
+faker==33.1.0
+
+# ── Qualité de code ───────────────────────────────────────────────
+ruff==0.9.1                  # linter + formatter (remplace flake8+black+isort)
+mypy==1.14.1
+django-stubs==5.1.2
+
+# ── Sécurité ──────────────────────────────────────────────────────
+pip-audit==2.7.3
+
+# ── Debug ─────────────────────────────────────────────────────────
+django-debug-toolbar==4.4.6
+ipython==8.30.0

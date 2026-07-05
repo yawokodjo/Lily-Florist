@@ -1,0 +1,27 @@
+name: Deploy → Render
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: 🚀 Trigger Render Deploy
+    runs-on: ubuntu-latest
+    needs: []   # Le CI est déclenché séparément
+
+    steps:
+      - name: Deploy Backend API
+        run: |
+          curl -s -X POST "${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}" \
+            -H "Content-Type: application/json" | jq .
+
+      - name: Deploy Frontend
+        run: |
+          curl -s -X POST "${{ secrets.RENDER_DEPLOY_HOOK_FRONTEND }}" \
+            -H "Content-Type: application/json" | jq .
+
+      - name: Notify success
+        if: success()
+        run: echo "✅ Déploiement déclenché sur Render"

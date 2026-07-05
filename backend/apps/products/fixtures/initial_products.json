@@ -1,0 +1,138 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": { "name": "Roses", "slug": "roses", "description": "Roses fraîches de toutes couleurs", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": { "name": "Tulipes", "slug": "tulipes", "description": "Tulipes printanières élégantes", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": { "name": "Lys", "slug": "lys", "description": "Lys blancs symboles d'élégance", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": { "name": "Arrangements", "slug": "arrangements", "description": "Bouquets mixtes et compositions", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": { "name": "Tournesols", "slug": "tournesols", "description": "Tournesols lumineux et joyeux", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 6,
+    "fields": { "name": "Orchidées", "slug": "orchidees", "description": "Orchidées exotiques et raffinées", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 7,
+    "fields": { "name": "Oeillets", "slug": "oeillets", "description": "Oeillets colorés et durables", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.category",
+    "pk": 8,
+    "fields": { "name": "Pivoines", "slug": "pivoines", "description": "Pivoines luxueuses aux floraisons généreuses", "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000001",
+    "fields": {
+      "name": "Bouquet de Roses Rouges", "slug": "bouquet-roses-rouges",
+      "description": "Roses rouges classiques, parfaites pour exprimer amour et romance. Douzaine de roses fraîches magnifiquement arrangées.",
+      "price": "29.99", "category": 1,
+      "image_url": "https://images.unsplash.com/photo-1548094967-e25a127d1f6d?w=800",
+      "stock_quantity": 25, "is_active": true, "is_featured": true,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000002",
+    "fields": {
+      "name": "Tulipes Roses", "slug": "tulipes-roses",
+      "description": "Élégantes tulipes roses qui illuminent n'importe quelle pièce. Fleurs printanières fraîches aux couleurs éclatantes.",
+      "price": "24.99", "category": 2,
+      "image_url": "https://images.unsplash.com/photo-1645802419761-eb577d82e025?w=800",
+      "stock_quantity": 30, "is_active": true, "is_featured": true,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000003",
+    "fields": {
+      "name": "Lys Blancs", "slug": "lys-blancs",
+      "description": "Lys blancs purs symbolisant élégance et grâce. Parfaits pour les occasions spéciales.",
+      "price": "34.99", "category": 3,
+      "image_url": "https://images.unsplash.com/photo-1758673825420-3e7fb0eb199a?w=800",
+      "stock_quantity": 0, "is_active": true, "is_featured": false,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000004",
+    "fields": {
+      "name": "Bouquet Mixte", "slug": "bouquet-mixte",
+      "description": "Magnifique mélange de fleurs de saison aux couleurs vives. Une délicieuse surprise pour tout destinataire.",
+      "price": "39.99", "category": 4,
+      "image_url": "https://images.unsplash.com/photo-1642728265490-2ea6c3320880?w=800",
+      "stock_quantity": 20, "is_active": true, "is_featured": true,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000005",
+    "fields": {
+      "name": "Bouquet de Tournesols", "slug": "bouquet-tournesols",
+      "description": "Tournesols lumineux et joyeux qui apportent le soleil dans votre maison.",
+      "price": "27.99", "category": 5,
+      "image_url": "https://images.unsplash.com/photo-1752765579755-3fa8ed16f5f1?w=800",
+      "stock_quantity": 15, "is_active": true, "is_featured": false,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000006",
+    "fields": {
+      "name": "Orchidées Violettes", "slug": "orchidees-violettes",
+      "description": "Orchidées violettes exotiques pour un goût sophistiqué. Durables et élégantes.",
+      "price": "44.99", "category": 6,
+      "image_url": "https://images.unsplash.com/photo-1769498491336-e67913b8a870?w=800",
+      "stock_quantity": 12, "is_active": true, "is_featured": true,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000007",
+    "fields": {
+      "name": "Oeillets Colorés", "slug": "oeillets-colores",
+      "description": "Oeillets vibrants en plusieurs couleurs. Beauté abordable et durable.",
+      "price": "19.99", "category": 7,
+      "image_url": "https://images.unsplash.com/photo-1618327887512-af4399ccab36?w=800",
+      "stock_quantity": 40, "is_active": true, "is_featured": false,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "11111111-0000-0000-0000-000000000008",
+    "fields": {
+      "name": "Pivoines Roses", "slug": "pivoines-roses",
+      "description": "Pivoines roses luxueuses aux floraisons généreuses. Parfaites pour mariages et célébrations.",
+      "price": "49.99", "category": 8,
+      "image_url": "https://images.unsplash.com/photo-1588457776180-4206b4909301?w=800",
+      "stock_quantity": 8, "is_active": true, "is_featured": true,
+      "created_at": "2025-01-01T00:00:00Z", "updated_at": "2025-01-01T00:00:00Z"
+    }
+  }
+]

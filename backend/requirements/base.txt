@@ -1,0 +1,21 @@
+# ── Core ─────────────────────────────────────────────────────────
+Django==5.1.4
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.6.0
+django-filter==24.3
+drf-spectacular==0.28.0
+
+# ── Base de données ───────────────────────────────────────────────
+psycopg[binary,pool]==3.2.3
+dj-database-url==2.3.0
+
+# ── Production ────────────────────────────────────────────────────
+gunicorn==23.0.0
+whitenoise[brotli]==6.8.2
+
+# ── Images ───────────────────────────────────────────────────────
+Pillow==11.1.0
+
+# ── Utilitaires ──────────────────────────────────────────────────
+python-decouple==3.8

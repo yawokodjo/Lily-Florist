@@ -1,0 +1,60 @@
+name: lily-florist-dev
+
+services:
+  # ── PostgreSQL local (même version que Neon) ──────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lily_florist
+      POSTGRES_USER: lily
+      POSTGRES_PASSWORD: lily_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lily -d lily_florist"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Django API ────────────────────────────────────────────────
+  api:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+      target: builder        # mode dev avec hot-reload
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+    volumes:
+      - ../backend:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../backend/.env
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.development
+      - DATABASE_URL=postgres://lily:lily_dev_password@db:5432/lily_florist
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── React Frontend ────────────────────────────────────────────
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+      target: builder
+    command: pnpm dev --host
+    restart: unless-stopped
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+
+volumes:
+  postgres_data:
