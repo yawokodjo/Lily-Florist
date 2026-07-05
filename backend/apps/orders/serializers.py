@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from .models import Order, OrderItem
+
 from apps.products.models import Product
+
+from .models import Order, OrderItem
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -8,7 +10,13 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ["product_name", "product_price", "quantity", "gift_message", "line_total"]
+        fields = [
+            "product_name",
+            "product_price",
+            "quantity",
+            "gift_message",
+            "line_total",
+        ]
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -17,14 +25,31 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = [
-            "id", "reference", "status", "created_at",
-            "delivery_first_name", "delivery_last_name",
-            "delivery_street", "delivery_city", "delivery_postal_code",
-            "delivery_date", "gift_message",
-            "subtotal", "delivery_fee", "discount", "total",
+            "id",
+            "reference",
+            "status",
+            "created_at",
+            "delivery_first_name",
+            "delivery_last_name",
+            "delivery_street",
+            "delivery_city",
+            "delivery_postal_code",
+            "delivery_date",
+            "gift_message",
+            "subtotal",
+            "delivery_fee",
+            "discount",
+            "total",
             "items",
         ]
-        read_only_fields = ["id", "reference", "status", "subtotal", "total", "created_at"]
+        read_only_fields = [
+            "id",
+            "reference",
+            "status",
+            "subtotal",
+            "total",
+            "created_at",
+        ]
 
 
 class CreateOrderItemSerializer(serializers.Serializer):
@@ -64,9 +89,7 @@ class CreateOrderSerializer(serializers.Serializer):
                 product_cache[str(item_data["product_id"])] = product
                 subtotal += product.price * item_data["quantity"]
             except Product.DoesNotExist:
-                raise serializers.ValidationError(
-                    f"Produit {item_data['product_id']} introuvable."
-                )
+                raise serializers.ValidationError(f"Produit {item_data['product_id']} introuvable.")
 
         order = Order.objects.create(
             user=request.user if request.user.is_authenticated else None,

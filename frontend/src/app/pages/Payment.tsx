@@ -64,11 +64,13 @@ export function Payment() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Progress */}
         <div className="mb-8 flex items-center justify-center gap-2">
-          {[
-            { n: 1, label: 'Delivery', done: true },
-            { n: 2, label: 'Payment', active: true },
-            { n: 3, label: 'Confirm', active: false },
-          ].map(({ n, label, done, active }: any, i, arr) => (
+          {(
+            [
+              { n: 1, label: 'Delivery', done: true, active: false },
+              { n: 2, label: 'Payment', done: false, active: true },
+              { n: 3, label: 'Confirm', done: false, active: false },
+            ] satisfies Array<{ n: number; label: string; done: boolean; active: boolean }>
+          ).map(({ n, label, done, active }, i, arr) => (
             <div key={n} className="flex items-center">
               <div className="flex items-center">
                 <div className={`size-8 rounded-full flex items-center justify-center text-sm font-medium ${done || active ? 'bg-pink-500 text-white' : 'bg-gray-300 text-gray-600'}`}>

@@ -1,5 +1,7 @@
 """Settings pour pytest — base de données en mémoire, pas de debug toolbar."""
+
 import dj_database_url
+
 from .base import *  # noqa: F401, F403
 
 SECRET_KEY = "test-secret-key-not-for-production"

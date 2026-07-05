@@ -21,7 +21,7 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       user: null,
       orders: [],
       accessToken: null,
@@ -40,7 +40,7 @@ export const useAuthStore = create<AuthState>()(
       addOrder: (orderData) => {
         const id = `ORD-${Date.now()}`
         const reference = `ORD-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
-        const newOrder: Order = { ...orderData as any, id, reference }
+        const newOrder: Order = { ...orderData, id, reference }
         set((state) => ({ orders: [...state.orders, newOrder] }))
         return id
       },

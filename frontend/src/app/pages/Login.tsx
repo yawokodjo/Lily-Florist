@@ -8,13 +8,23 @@ import { toast } from 'sonner'
 import { useAuthStore } from '../store/authStore'
 import { authApi } from '../services/api'
 
+interface MockUserRecord {
+  id: string
+  name: string
+  email: string
+  password: string
+}
+
 // En mode dev (pas d'API), on utilise un mock localStorage
 function mockLogin(email: string, password: string) {
-  const users = JSON.parse(localStorage.getItem('lily_users') || '[]')
-  const found = users.find((u: any) => u.email === email && u.password === password)
+  const users: MockUserRecord[] = JSON.parse(localStorage.getItem('lily_users') || '[]')
+  const found = users.find((u) => u.email === email && u.password === password)
   if (found) {
-    const { password: _, ...user } = found
-    return { user: { id: user.id, email: user.email, first_name: user.name || '', last_name: '', phone: '' }, access: 'mock_access', refresh: 'mock_refresh' }
+    return {
+      user: { id: found.id, email: found.email, first_name: found.name || '', last_name: '', phone: '' },
+      access: 'mock_access',
+      refresh: 'mock_refresh',
+    }
   }
   return null
 }

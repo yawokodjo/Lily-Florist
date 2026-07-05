@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { CheckCircle, Package, Calendar, Mail } from 'lucide-react'
 import { useCartStore } from '../store/cartStore'
@@ -10,13 +10,16 @@ export function Confirmation() {
   const { user, addOrder } = useAuthStore()
   const processed = useRef(false)
 
-  const orderDataRaw = sessionStorage.getItem('orderData')
-  if (!orderDataRaw) return <Navigate to="/cart" replace />
-
-  const data: OrderData = JSON.parse(orderDataRaw)
+  // Snapshot once at mount so a later re-render (triggered by clearCart/addOrder
+  // below, after sessionStorage is cleared) doesn't flip this back to null and
+  // skip the useEffect call below, which would violate the Rules of Hooks.
+  const [data] = useState<OrderData | null>(() => {
+    const raw = sessionStorage.getItem('orderData')
+    return raw ? JSON.parse(raw) : null
+  })
 
   useEffect(() => {
-    if (processed.current) return
+    if (processed.current || !data) return
     processed.current = true
 
     addOrder({
@@ -31,12 +34,14 @@ export function Confirmation() {
       delivery_street: data.deliveryDetails.address,
       delivery_city: `${data.deliveryDetails.city}, ${data.deliveryDetails.zipCode}`,
       status: 'confirmed',
-    } as any)
+    })
 
     clearCart()
     sessionStorage.removeItem('deliveryDetails')
     sessionStorage.removeItem('orderData')
-  }, [])
+  }, [data, addOrder, clearCart])
+
+  if (!data) return <Navigate to="/cart" replace />
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">

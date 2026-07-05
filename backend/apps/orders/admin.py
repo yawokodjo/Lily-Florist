@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Order, OrderItem
 
 
@@ -10,7 +11,14 @@ class OrderItemInline(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["reference", "user", "status", "total", "delivery_date", "created_at"]
+    list_display = [
+        "reference",
+        "user",
+        "status",
+        "total",
+        "delivery_date",
+        "created_at",
+    ]
     list_filter = ["status", "created_at"]
     search_fields = ["reference", "delivery_email", "delivery_first_name"]
     readonly_fields = ["reference", "subtotal", "total", "created_at"]

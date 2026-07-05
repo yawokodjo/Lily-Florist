@@ -2,9 +2,16 @@
 Modèle User personnalisé.
 On hérite de AbstractBaseUser pour un contrôle total.
 """
+
 import uuid
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
+
 from apps.core.models import TimestampedModel
 
 

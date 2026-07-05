@@ -2,9 +2,10 @@
 Tests unitaires — modèle Product.
 Lancer : pytest backend/tests/unit/test_products.py -v
 """
-import pytest
+
 from decimal import Decimal
-from django.core.exceptions import ValidationError
+
+import pytest
 
 
 @pytest.mark.django_db

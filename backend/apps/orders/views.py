@@ -4,13 +4,16 @@ POST /api/v1/orders/           → créer une commande
 GET  /api/v1/orders/           → mes commandes
 GET  /api/v1/orders/<id>/      → détail commande
 """
+
 from django.db import transaction
-from rest_framework import viewsets, status, permissions
+from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Order, OrderItem
-from .serializers import OrderSerializer, CreateOrderSerializer
+
 from apps.products.models import Product
+
+from .models import Order
+from .serializers import CreateOrderSerializer, OrderSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):

@@ -1,11 +1,12 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, filters, status
+from rest_framework import filters, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .models import Product, Category
-from .serializers import ProductSerializer, ProductDetailSerializer, CategorySerializer
+
 from .filters import ProductFilter
+from .models import Category, Product
+from .serializers import CategorySerializer, ProductDetailSerializer, ProductSerializer
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -30,7 +31,11 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     )
     permission_classes = [AllowAny]
     lookup_field = "slug"
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = ProductFilter
     search_fields = ["name", "description"]
     ordering_fields = ["price", "name", "created_at"]

@@ -30,7 +30,12 @@ export const useCartStore = create<CartState>()(
               ),
             }
           }
-          return { items: [...state.items, { ...product, quantity }] }
+          return {
+            items: [
+              ...state.items,
+              { ...product, quantity: Math.min(quantity, product.stock_quantity) },
+            ],
+          }
         }),
 
       removeItem: (id) =>

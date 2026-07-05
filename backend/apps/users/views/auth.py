@@ -5,14 +5,20 @@ POST /api/v1/auth/login/
 POST /api/v1/auth/refresh/
 POST /api/v1/auth/logout/
 """
+
 from django.contrib.auth import get_user_model
-from rest_framework import status, generics
+from rest_framework import generics, serializers, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
-from ..serializers import RegisterSerializer, UserSerializer, CustomTokenObtainPairSerializer
+
+from ..serializers import (
+    CustomTokenObtainPairSerializer,
+    RegisterSerializer,
+    UserSerializer,
+)
 
 User = get_user_model()
 
@@ -41,13 +47,20 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(TokenObtainPairView):
     """Connexion — renvoie access + refresh + infos user."""
-    serializer_class = CustomTokenObtainPairSerializer
-    permission_classes = [AllowAny]
+
+    serializer_class = CustomTokenObtainPairSerializer  # type: ignore[assignment]
+    permission_classes = [AllowAny]  # type: ignore[assignment]
+
+
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
 
 
 class LogoutView(APIView):
     """Déconnexion — blackliste le refresh token."""
+
     permission_classes = [IsAuthenticated]
+    serializer_class = LogoutSerializer
 
     def post(self, request):
         try:
