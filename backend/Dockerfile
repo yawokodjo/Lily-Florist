@@ -34,7 +34,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     DJANGO_SETTINGS_MODULE=config.settings.production
 
 # Collecter les fichiers statiques
-RUN python manage.py collectstatic --noinput
+#RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
