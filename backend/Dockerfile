@@ -26,6 +26,8 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 # Copier le code
 COPY --chown=app:app . .
 
+RUN chmod +x entrypoint.sh && chown app:app /app
+
 USER app
 
 # Variables d'environnement
@@ -33,10 +35,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=config.settings.production
 
-# Collecter les fichiers statiques
-#RUN python manage.py collectstatic --noinput
-
 EXPOSE 8000
+
+ENTRYPOINT ["./entrypoint.sh"]
 
 # Commande de démarrage
 CMD ["gunicorn", "config.wsgi:application", \
